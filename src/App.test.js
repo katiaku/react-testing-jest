@@ -1,6 +1,7 @@
-import { render } from "@testing-library/react"
+import { render, fireEvent } from "@testing-library/react"
 import ListNotes from "./components/ListNotes"
 import App from "./App";
+import InputNewNote from "./components/InputNewNote";
 
 describe('Testing components', () => {
   test('if the list renders correctly', () => {
@@ -25,5 +26,12 @@ describe('Integration test', () => {
     const r = render(<App />);
     const input = r.getByPlaceholderText(placeholdertext);
     expect(input).toBeDefined();
+  })
+  test('if when the add button is clicked the event is launched', () => {
+    const functionMock = jest.fn();
+    const r = render(<InputNewNote addNewNote={functionMock} />);
+    const button = r.getByText("Add");
+    fireEvent.click(button);
+    expect(functionMock).toHaveBeenCalledTimes(1);
   })
 })
