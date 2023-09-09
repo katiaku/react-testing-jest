@@ -2,11 +2,11 @@ import React from 'react'
 
 const ListNotes = ({ notes }) => {
     return (
-        <ul className="list-notes">
+        <div className="list-notes">
             {notes.map((note, i) => (
-                <li key={i}>{ note }</li>
+                <div key={i}>{ note }</div>
             ))}
-        </ul>
+        </div>
     );
 };
 
