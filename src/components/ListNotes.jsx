@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ListNotes = ({ notes }) => {
+const ListNotes = ({ notes = [] }) => {
     return (
         <div className="list-notes">
             {notes.map((note, i) => (
