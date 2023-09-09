@@ -34,4 +34,18 @@ describe('Integration test', () => {
     fireEvent.click(button);
     expect(functionMock).toHaveBeenCalledTimes(1);
   })
+  test('if adds a new note', () => {
+    const placeholdertext = "Please input a note";
+    const r = render(<App />);
+    const input = r.getByPlaceholderText(placeholdertext);
+    const button = r.getByText("Add");
+    const div = r.getByLabelText('list-notes');
+    const childrenStart = div.childElementCount;
+    fireEvent.change(input, { target: { value: 'learn jest' } });
+    fireEvent.click(button);
+    const childrenFinish = div.childElementCount;
+    expect(childrenFinish).toBeGreaterThan(childrenStart);
+    expect(childrenStart).toBeLessThan(childrenFinish);
+    expect(childrenStart).not.toBe(childrenFinish);
+  })
 })
